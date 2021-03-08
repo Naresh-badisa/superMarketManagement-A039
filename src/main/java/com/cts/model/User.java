@@ -1,13 +1,23 @@
 package com.cts.model;
 
+import javax.validation.constraints.NotEmpty;
+
 public class User {
+	@NotEmpty
 	private String firstName;
+	@NotEmpty
 	private String lastName;
+	@NotEmpty
 	private String DateOfBirth;
+	@NotEmpty
 	private String gender;
+	@NotEmpty
 	private String contactNumber;
+	@NotEmpty
 	private String email;
+	@NotEmpty
 	private String userId;
+	@NotEmpty
 	private String password;
 	//private String userCategory;
 	public String getFirstName() {
