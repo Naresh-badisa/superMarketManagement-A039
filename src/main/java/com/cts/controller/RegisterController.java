@@ -20,7 +20,7 @@ public class RegisterController {
 	JdbcTemplate jdbcTemplate;
 	
 	@GetMapping(value="/index")
-	public String getregister() {
+	public String getregister(@ModelAttribute("user") User user) {
 		return "index";
 	}
 	
@@ -39,7 +39,7 @@ public class RegisterController {
 			model.addAttribute("error","Please update highlighted mandatory field");
 			return "register";
 		}
-		jdbcTemplate.update("insert into user values(?,?,?,?,?,?,?,?)",user.getFirstName(),user.getLastName(),user.getDateOfBirth(),user.getGender(),user.getContactNumber(),user.getEmail(),user.getUserId(),user.getPassword());
+		jdbcTemplate.update("insert into user values(?,?,?,?,?,?,?,?,?)",user.getFirstName(),user.getLastName(),user.getDateOfBirth(),user.getGender(),user.getContactNumber(),user.getEmail(),user.getUserId(),user.getPassword(),user.getUserCategory());
 		return "welcome";
 	}
 	

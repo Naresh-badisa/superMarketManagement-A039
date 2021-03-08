@@ -20,8 +20,13 @@ ${error}
 <tr><td>UserId*:</td><td><form:input path="userId" id="userid" /></td></tr>
 <tr><td>Password*:</td><td><form:password path="password" id="password" /></td></tr>
 <tr><td>Email*:</td><td><form:input path="email" id="email" /></td></tr>
-</table>
+<tr><td>User Category*:</td><td><form:select path="userCategory">
+<form:option value="" label="select"/>
+<form:option value="manager" label="Manager"/>
+<form:option value="cashier" label="Cashier"/>
+</form:select></td></tr>
 <tr><td><input type="submit" name="submit" value="Register"></td></tr>
+</table>
 </form:form>
 </body>
 </html>

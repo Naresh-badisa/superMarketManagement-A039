@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +10,13 @@
 <body>
 <h1><center>Welcome to Super Market</center></h1>
 <h4>Different Roles to Register:</h4>
-<form action="login">
-<center><select name="user">
-<option>select</option>
-<option value="manager">Manager</option>
-<option value="cashier">Cashier</option>
-</select><br><br>
+<form:form action="login" modelAttribute="user" method="get">
+<center><form:select path="userCategory">
+<form:option value="" label="select"/>
+<option value="manager" label="Manager"/>
+<option value="cashier" label="Cashier"/>
+</form:select><br><br>
 <input type="submit" name="submit" value="Submit"></center>
-</form>
+</form:form>
 </body>
 </html>
