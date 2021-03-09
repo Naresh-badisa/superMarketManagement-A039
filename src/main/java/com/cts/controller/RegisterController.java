@@ -66,29 +66,47 @@ public class RegisterController {
 		@PostMapping(value="/postLogin")
        public String postLogin(@ModelAttribute("user") User user,ModelMap map) {
 			List<User> list=login.details(user);
-			boolean validate=false;
+			boolean validate1=false,validate2=false;
 			for(User i:list) {
-				if(i.getUserId().equals(user.getUserId()) && i.getPassword().equals(user.getPassword())) {
-					validate=true;
+					if(i.getUserId().equals(user.getUserId())) {
+					validate1=true;
 					break;
 				}
+				
 			}
-			if(validate) {
+				for(User i1:list) {
+					if(i1.getPassword().equals(user.getPassword())) {
+						validate2=true;
+						break;
+					}
+			}
+			if(validate1&&validate2) {
 				return "welcome";
 			}
-			map.put("error", "Invalid User Id or Password");
+			else if(!validate1) {
+
+				map.put("error", "UserId Not Present");
+				return "login";
+			}
+			else if(!validate2) {
+				map.put("error", "Password Not Matching");
+				return "login";
+			}
+			else {
+			map.put("error", "UserId Not Present");
 			return "login";
-			
+			}
      }
 		@PostMapping(value="/adminLogin")
 		public String adminLogin(@ModelAttribute("user") User user,ModelMap map) {
 			List<User> list=login.details(user);
 			boolean validate1=false,validate2=false;
 			for(User i:list) {
-				if(i.getUserId().equals(user.getUserId())) {
+					if(i.getUserId().equals(user.getUserId())) {
 					validate1=true;
 					break;
 				}
+				
 			}
 				for(User i1:list) {
 					if(i1.getPassword().equals(user.getPassword())) {
