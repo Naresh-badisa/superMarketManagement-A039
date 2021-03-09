@@ -5,15 +5,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login page</title>
+<title>Insert title here</title>
 </head>
 <body>
 ${error}
-<form:form action="postLogin" method="post" modelAttribute="user">
+<form:form action="adminLogin" method="post" modelAttribute="user">
 UserId:<form:input path="userId"/><br>
 Password:<form:password path="password" /><br>
-<input type="submit" name="submit" value="Login"><br><br>
-New User:<a href="register">sign up</a>
+<input type="submit" name="submit" value="Login">
 </form:form>
 </body>
 </html>

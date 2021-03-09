@@ -10,11 +10,12 @@
 <body>
 <h1><center>Welcome to Super Market</center></h1>
 <h4>Different Roles to Register:</h4>
-<form:form action="login" modelAttribute="user" method="get">
+<form:form action="abc" modelAttribute="user" method="get">
 <center><form:select path="userCategory">
 <form:option value="" label="select"/>
 <option value="manager" label="Manager"/>
 <option value="cashier" label="Cashier"/>
+<option value="admin" label="Admin"/>
 </form:select><br><br>
 <input type="submit" name="submit" value="Submit"></center>
 </form:form>
