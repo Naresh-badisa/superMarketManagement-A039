@@ -67,11 +67,13 @@ public class RegisterController {
        public String postLogin(@ModelAttribute("user") User user,ModelMap map) {
 			List<User> list=login.details(user);
 			boolean validate1=false,validate2=false;
+			String name=null;
 			for(User i:list) {
 				if(i.getUserCategory().equals("manager") || i.getUserCategory().equals("cashier") )
 				{
 					if(i.getUserId().equals(user.getUserId())) {
 					validate1=true;
+					name=i.getFirstName();
 					break;
 				}
 				}
@@ -83,7 +85,8 @@ public class RegisterController {
 					}
 			}
 			if(validate1&&validate2) {
-				return "welcome";
+				map.put("name",name);
+				return "welcomeuser";
 			}
 			else if(!validate1) {
 
@@ -103,11 +106,13 @@ public class RegisterController {
 		public String adminLogin(@ModelAttribute("user") User user,ModelMap map) {
 			List<User> list=login.details(user);
 			boolean validate1=false,validate2=false;
+			String name=null;
 			for(User i:list) {
 				if(i.getUserCategory().equals("admin"))
 				{
 					if(i.getUserId().equals(user.getUserId())) {
 					validate1=true;
+					name=i.getFirstName();
 					break;
 				}
 				}
@@ -119,7 +124,8 @@ public class RegisterController {
 					}
 			}
 			if(validate1&&validate2) {
-				return "welcome";
+				map.put("name",name );
+				return "welcomeuser";
 			}
 			else if(!validate1) {
 
