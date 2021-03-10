@@ -4,8 +4,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Logoff</title>
 </head>
+<style>
+h1{
+color:#329da8;
+}
+</style>
 <body>
 <h1>Your Logging off successfully</h1>
 </body>

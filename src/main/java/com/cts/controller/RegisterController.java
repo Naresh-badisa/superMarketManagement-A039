@@ -85,18 +85,18 @@ public class RegisterController {
 				return "welcomeuser";
 			}
 			else if(!validate1) {
-
 				map.put("error", "UserId Not Present");
 				return "login";
-			}
+				}
 			else if(!validate2) {
+
 				map.put("error", "Password Not Matching");
 				return "login";
 			}
-			else {
-			map.put("error", "UserId Not Present");
-			return "login";
-			}
+			else  {
+				map.put("error", "UserId Not Present");
+				return "login";
+			}	
      }
 		@PostMapping(value="/adminLogin")
 		public String adminLogin(@ModelAttribute("user") User user,ModelMap map) {
@@ -123,19 +123,20 @@ public class RegisterController {
 				map.put("name",name );
 				return "welcomeuser";
 			}
+			
 			else if(!validate1) {
-
 				map.put("error", "UserId Not Present");
 				return "adminlogin";
-			}
+				 	}
 			else if(!validate2) {
 				map.put("error", "Password Not Matching");
 				return "adminlogin";
 			}
 			else {
-			map.put("error", "UserId Not Present");
-			return "adminlogin";
+				map.put("error", "UserId Not Present");
+				return "adminlogin";
 			}
+			
 		}
 		
 		@GetMapping(value="/logoff")

@@ -4,12 +4,22 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>welcomeUser</title>
+<style >
+h1{
+color:#fc03a1;
+font:bold;
+}
+
+</style>
 </head>
 <body>
 <h1>Welcome to SuperMarket Portal ${name }</h1>
+
 <form action="/logoff">
+<div style='align:right'>
 <input type="submit" name="submit" value="LOGOFF">
+</div>
 </form>
 </body>
 </html>

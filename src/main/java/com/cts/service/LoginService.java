@@ -21,7 +21,7 @@ public class LoginService {
 	public List<User> details(User user){
 	List<User> user1=new ArrayList<User>();
 	
-	user1= jdbcTemplate.query("select * from user where userid=? and password=?",new RowMapper<User>(){
+	user1= jdbcTemplate.query("select * from user where userid=?",new RowMapper<User>(){
 
 		@Override
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -36,7 +36,7 @@ public class LoginService {
 			return user1;
 		}
 		
-	},user.getUserId(),user.getPassword());
+	},user.getUserId());
 	
 	return user1;
 	}
