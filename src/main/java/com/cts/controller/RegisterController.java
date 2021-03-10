@@ -68,11 +68,13 @@ public class RegisterController {
 			List<User> list=login.details(user);
 			boolean validate1=false,validate2=false;
 			for(User i:list) {
+				if(i.getUserCategory().equals("manager") || i.getUserCategory().equals("cashier") )
+				{
 					if(i.getUserId().equals(user.getUserId())) {
 					validate1=true;
 					break;
 				}
-				
+				}
 			}
 				for(User i1:list) {
 					if(i1.getPassword().equals(user.getPassword())) {
@@ -102,11 +104,13 @@ public class RegisterController {
 			List<User> list=login.details(user);
 			boolean validate1=false,validate2=false;
 			for(User i:list) {
+				if(i.getUserCategory().equals("admin"))
+				{
 					if(i.getUserId().equals(user.getUserId())) {
 					validate1=true;
 					break;
 				}
-				
+				}
 			}
 				for(User i1:list) {
 					if(i1.getPassword().equals(user.getPassword())) {
