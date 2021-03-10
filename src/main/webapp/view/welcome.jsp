@@ -7,6 +7,6 @@
 <title>welcome</title>
 </head>
 <body>
-<h1>Your details are updated Successfully!!!</h1>
+<h1 style='color:green'>Your details are updated Successfully!!!</h1>
 </body>
 </html>
