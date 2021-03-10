@@ -8,5 +8,8 @@
 </head>
 <body>
 <h1>Welcome to SuperMarket Portal ${name }</h1>
+<form action="/logoff">
+<input type="submit" name="submit" value="LOGOFF">
+</form>
 </body>
 </html>
