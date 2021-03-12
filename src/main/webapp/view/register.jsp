@@ -61,21 +61,22 @@ function validate()
 <form:form action="/registration" method="post" modelAttribute="user">
 <table>
 <h4 style="color:red">${error}</h4>
-<tr><td>FirstName:</td><td><form:input type="text" path="firstName" id="firstname" placeholder="Enter First Name" /></td></tr>
-<tr><td>LastName:</td><td><form:input path="lastName" id="lastname" placeholder="Enter Last Name" /></td></tr>
+<tr><td>FirstName:</td><td><form:input type="text" path="firstName" id="firstname" placeholder="Enter First Name" pattern="[A-za-z]{}" /></td></tr>
+<tr><td>LastName:</td><td><form:input path="lastName" id="lastname" placeholder="Enter Last Name" pattern="[A-Za-z]{}"/></td></tr>
 <tr><td>DateOfBirth:</td><td><form:input path="DateOfBirth" id="dob" placeholder="Enter Your DOB"/></td></tr>
 <tr><td>Gender:</td><td><form:radiobutton path="gender" id="male" value="male"/>Male
 <form:radiobutton path="gender" id="female" value="female"/>Female</td></tr>
-<tr><td>PhoneNumber:</td><td><form:input path="contactNumber" id="phonenumber" pattern=".{10}" placeholder="Enter your 10 Digit number"/></td></tr>
+<tr><td>PhoneNumber:</td><td><form:input path="contactNumber" id="phonenumber"  placeholder="Enter your 10 Digit number" pattern="[9-6]{1}[0-9]{9}" /></td></tr>
 <tr><td>UserId:</td><td><form:input path="userId" id="userid" placeholder="Enter User id"/></td></tr>
 <tr><td>Password:</td><td><form:password path="password" id="password" placeholder="Enter password"/></td></tr>
-<tr><td>Email:</td><td><form:input path="email" id="email" placeholder="Enter E-mail" /></td></tr>
+<tr><td>Email:</td><td><form:input path="email" id="email" placeholder="Enter E-mail" pattern="[^@\s]+@[^@\s]+\.[^@\s]+"/></td></tr>
 <tr><td>User Category:</td><td><form:select path="userCategory" style='padding: 5px 5px;font-size:15px'>
 <form:option value="" label="Select"/>
 <form:option value="manager" label="Manager"/>
 <form:option value="cashier" label="Cashier"/>
 </form:select></td></tr>
-<center><tr><td><input type="submit" name="submit" value="Register" style='background-color:green;align:center;border-radius: 12px solid #008CBA;padding: 10px 20px;font-size: 16px;margin: 4px 2px;color:white' onclick="validate()"></td></tr>
+<tr><td>Status:</td><td><form:radiobutton path="status" id="status" value="inactive"/>Inactive
+<center><tr><td><input type="submit" name="submit" value="Register" style='background-color:green;align:center;border-radius: 12px solid #008CBA;padding: 10px 20px;font-size: 16px;margin: 4px 2px;color:white'></td></tr>
 </table>
 </form:form>
 </body>

@@ -24,6 +24,7 @@ public class User {
 	@NotNull
 	@NotEmpty
 	@NotBlank
+   private String status;
 	private String userCategory;
 
 	public String getFirstName() {
@@ -96,6 +97,14 @@ public class User {
 
 	public void setUserCategory(String userCategory) {
 		this.userCategory = userCategory;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

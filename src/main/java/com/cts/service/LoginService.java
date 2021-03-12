@@ -33,6 +33,7 @@ public class LoginService {
 			user1.setDateOfBirth(rs.getString("dateofbirth"));
 			user1.setContactNumber(rs.getString("contactnumber"));
 			user1.setUserCategory(rs.getString("usercategory"));
+			user1.setStatus(rs.getString("status"));
 			return user1;
 		}
 		
