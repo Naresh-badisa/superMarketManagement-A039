@@ -16,6 +16,7 @@
 <form:option value="dairy" label="Dairy"/>
 <form:option value="fruit" label="Fruit"/>
 <form:option value="spreads" label="Spreads"/>
+<form:option value="frozenfood" label="FrozenFood"/>
 </form:select>
 <input type="submit" value="Go">
 </form:form>

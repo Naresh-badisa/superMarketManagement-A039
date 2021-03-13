@@ -30,34 +30,25 @@ Class.forName("com.mysql.jdbc.Driver");
 String url="jdbc:mysql://localhost/supermarket";
 String username="root";
 String password="Naresh@404";
-String query="select * from product";
+String query="select * from product where category=?";
 
 Connection conn=DriverManager.getConnection(url,username,password);
-Statement stmt=conn.createStatement();
-
-
-ResultSet rs=stmt.executeQuery(query);
+PreparedStatement pstmt=conn.prepareStatement(query);
+pstmt.setString(1, "cooldrinks");
+ResultSet rs=pstmt.executeQuery();
 while(rs.next())
 {
 
 %>
     <tr>
+    <td><%=rs.getString("name") %></td>
     <td><%=rs.getString("category") %></td>
-    <td><input type="text" value="<%=rs.getString("name") %>"></td>
-    <td><input type="text" value="<%=rs.getString("manufacturer") %>"></td>
-    <td><input type="button" name="UPDATE" value="UPDATE" onclick="
-    <% 
-    String qmod="update product set name=?,category=? where category=? ";
-    PreparedStatement pstmt=conn.prepareStatement(qmod);
-    String one=request.getParameter("name");
-    String two=request.getParameter("manufacturer");
-    String three=request.getParameter("category");
-    pstmt.setString(1,one);
-    pstmt.setString(2,two);
-    pstmt.setString(3,three);
-    pstmt.executeUpdate(); 
-    %>"></td>
-    <td> <input type="button" name="DELETE" value="DELETE"></td>
+    <td><%=rs.getString("manufacturer") %></td>
+    <td><%=rs.getString("quantity") %></td>
+    <td><%=rs.getString("rate") %></td>
+    <td><%=rs.getString("discount") %></td>
+    <td><a href="edit?name=<%=rs.getString("name") %>">Edit</a></td>
+    
     </tr>
         <%
 
@@ -66,7 +57,6 @@ while(rs.next())
     </table>
     <%
     rs.close();
-    stmt.close();
     conn.close();
     }
     catch(Exception e)

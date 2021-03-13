@@ -1,11 +1,19 @@
 package com.cts.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class Product {
+	@NotEmpty
 	private String name;
 	private String category;
 	private String manufacturer;
+	@NotNull
 	private double quantity;
+	@NotNull
 	private double rate;
+	@NotNull
 	private double discount;
 	public String getName() {
 		return name;
