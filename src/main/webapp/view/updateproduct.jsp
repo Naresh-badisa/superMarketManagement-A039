@@ -12,11 +12,17 @@
 <h2>select any one of Category:</h2>
 <form:form action="/categoryselection" modelAttribute="product" method="get">
 <form:select path="category">
-<form:option value="cooldrinks" label="CoolDrinks"/>
+<form:option value="beverages" label="Beverages"/>
 <form:option value="dairy" label="Dairy"/>
-<form:option value="fruit" label="Fruit"/>
-<form:option value="spreads" label="Spreads"/>
-<form:option value="frozenfood" label="FrozenFood"/>
+<form:option value="produce" label="Produce"/>
+<form:option value="bakery" label="Bakery"/>
+<form:option value="meat" label="Meat"></form:option>
+<form:option value="groceries" label="Groceries"></form:option>
+<form:option value="frozenfood" label="Frozen-Food"/>
+<form:option value="cleaners" label="Cleaners"></form:option>
+<form:option value="papergoods" label="PaperGoods"></form:option>
+<form:option value="personalcare" label="PersonalCare"></form:option>
+<form:option value="others" label="Others"></form:option>
 </form:select>
 <input type="submit" value="Go">
 </form:form>

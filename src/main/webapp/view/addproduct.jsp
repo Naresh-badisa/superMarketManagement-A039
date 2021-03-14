@@ -8,10 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form action="updateEditedForm" method="post" modelAttribute="product">
+<form:form action="addproductdb" method="post" modelAttribute="product">
 ${error}
 <table>
-<tr><td>Name</td><td><form:input path="name" id="name" pattern="[A-za-z]{}"/></td>
+<tr><td>Name</td><td><form:input path="name" id="name" pattern="[A-za-z]+"/></td>
 <tr><td>Category</td><td><form:select path="category">
 <form:option value="beverages"></form:option>
 <form:option value="bakery"></form:option>
@@ -28,7 +28,7 @@ ${error}
 <tr><td>Quantity</td><td><form:input path="quantity" id="quantity" pattern="[0-9]{}"/></td></tr>
 <tr><td>Rate</td><td><form:input path="rate" id="rate" pattern="[0-9]{}"/></td></tr>
 <tr><td>Discount</td><td><form:input path="discount" id="discount" pattern="[0-9]{}"/></td></tr>
-<tr><td><input type="submit" name="submit" value="Update"/>
+<tr><td><input type="submit" name="submit" value="Add"/>
 </table>
 
 </form:form>

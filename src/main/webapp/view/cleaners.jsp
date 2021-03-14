@@ -36,7 +36,7 @@
 
 			Connection conn = DriverManager.getConnection(url, username, password);
 			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, "frozenfood");
+			pstmt.setString(1, "cleaners");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 		%>

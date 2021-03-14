@@ -19,6 +19,9 @@
 			<td>Name</td>
 			<td>Category</td>
 			<td>Manufacturer</td>
+			<td>Quantity</td>
+			<td>Rate</td>
+			<td>Discount</td>
 			<td colspan="2" align="center">ACTION</td>
 		</tr>
 
@@ -45,11 +48,13 @@
 			<td><%=rs.getString("rate")%></td>
 			<td><%=rs.getString("discount")%></td>
 			<td><a href="edit?name=<%=rs.getString("name")%>">Edit</a></td>
+			<td><a href="deleteproduct?name=<%=rs.getString("name")%>">Delete</a></td>
 		</tr>
 		<%
 		}
 		%>
 	</table>
+	 <a href="addproduct">Add Item</a>
 	<%
 	rs.close();
 	conn.close();
