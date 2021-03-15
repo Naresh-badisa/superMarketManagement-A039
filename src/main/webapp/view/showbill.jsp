@@ -7,11 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- <nav>
-        <a href="/updateproduct">UpdateProductDetails</a> |<a href="/addcustomer">Add-Customer</a>|
-        <a href="/logoff">Logoff</a>
-    </nav>
-<h1>Welcome Manager ${name}</h1>
-
+<h1>Thank you for visiting our supermarket.And your bill is ${total}</h1>
 </body>
 </html>

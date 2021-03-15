@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cts.model.Cart;
+import com.cts.model.Customer;
+import com.cts.model.Product;
 import com.cts.model.User;
 import com.cts.service.LoginService;
+import com.cts.service.ProductService;
 import com.cts.service.ViewAllUsers;
 
 @Controller
@@ -27,6 +31,8 @@ public class UserController {
 	JdbcTemplate jdbcTemplate;
 	@Autowired
 	LoginService login;
+	@Autowired
+	ProductService service;
 
 	@GetMapping(value = "/index")
 	public String getregister(@ModelAttribute("user") User user) {
@@ -60,14 +66,14 @@ public class UserController {
 			return "register";
 		}
 		List<User> list = login.details(user);
-		boolean exist=false;
-		for(User i:list) {
-			if(user.getUserId().equals(i.getUserId())) {
-				exist=true;
+		boolean exist = false;
+		for (User i : list) {
+			if (user.getUserId().equals(i.getUserId())) {
+				exist = true;
 				break;
 			}
 		}
-		if(exist) {
+		if (exist) {
 			model.addAttribute("error", "UserId already exist");
 			return "register";
 		}
@@ -83,23 +89,23 @@ public class UserController {
 		boolean validate1 = false, validate2 = false, validate3 = false, validate4 = false;
 		String name = null, user2 = null;
 		for (User i : list) {
-			if(i.getStatus().equals("active")) {
-			if (i.getUserCategory().equals("manager")) {
-				if (i.getUserId().equals(user.getUserId())) {
-					validate1 = true;
-					name = i.getFirstName();
-					user2 = i.getUserCategory();
-					break;
+			if (i.getStatus().equals("active")) {
+				if (i.getUserCategory().equals("manager")) {
+					if (i.getUserId().equals(user.getUserId())) {
+						validate1 = true;
+						name = i.getFirstName();
+						user2 = i.getUserCategory();
+						break;
+					}
 				}
-			}
-			if (i.getUserCategory().equals("cashier")) {
-				if (i.getUserId().equals(user.getUserId())) {
-					validate3 = true;
-					name = i.getFirstName();
-					user2 = i.getUserCategory();
-					break;
+				if (i.getUserCategory().equals("cashier")) {
+					if (i.getUserId().equals(user.getUserId())) {
+						validate3 = true;
+						name = i.getFirstName();
+						user2 = i.getUserCategory();
+						break;
+					}
 				}
-			}
 			}
 		}
 		for (User i1 : list) {
@@ -151,6 +157,89 @@ public class UserController {
 		}
 	}
 
+	@GetMapping(value = "/addcustomer")
+	public String addcustomer(@ModelAttribute("customer") Customer customer) {
+		return "customerRegistrationForm";
+	}
+
+	@PostMapping(value = "/customerRegistration")
+	public String customerRegistration(@ModelAttribute("customer") @Valid Customer customer, BindingResult result,
+			ModelMap map) {
+		if (result.hasErrors()) {
+			map.put("error", "Please update the details in highlighted fields");
+			return "customerRegistrationForm";
+		}
+
+		jdbcTemplate.update("insert into customer values(?,?,?,?,?,?)", customer.getFirstName(), customer.getLastName(),
+				customer.getDateOfBirth(), customer.getGender(), customer.getContactNumber(), customer.getEmail());
+		return "welcome";
+	}
+
+	@GetMapping(value = "/generatebill")
+	public String generateBill(@ModelAttribute Cart cart) {
+		return "billgeneration";
+	}
+
+	@GetMapping(value = "/billgeneration")
+	public String billgeneration(@ModelAttribute("product") Product product, ModelMap map) {
+		if (product.getCategory().equals("beverages")) {
+			return "beveragesbill";
+		} else if (product.getCategory().equals("dairy")) {
+			return "dairybill";
+		} else if (product.getCategory().equals("produce")) {
+			return "producebill";
+		} else if (product.getCategory().equals("bakery")) {
+			return "bakerybill";
+		}else if(product.getCategory().equals("cleaners")) {
+			return "cleanersbill";
+		}else if(product.getCategory().equals("meat")) {
+			return "meatbill";
+		}else if(product.getCategory().equals("groceries")) {
+			return "groceriesbill";
+		}else if(product.getCategory().equals("papergoods")) {
+			return "papergoodsbill";
+		}else if(product.getCategory().equals("personalcare")) {
+			return "personalcarebill";
+		}else if(product.getCategory().equals("frozenfood")) {
+			return "frozenfoodbill";
+		}
+		else if(product.getCategory().equals("others")) {
+			return "othersbill";
+		}
+		
+		else {
+			return "billgeneration";
+		}
+	}
+
+	@GetMapping(value = "/addtocart")
+	public String getdairybill(@ModelAttribute("cart")Cart cart, String name) {
+		double reduce=0.0;
+		List<Cart> list = service.getproductbyname(name);
+		System.out.println("hello world "+list.size()+name);
+		for (Cart i : list) {
+			System.out.println(
+					i.getName() + i.getCategory() + i.getManufacturer() +i.getQuantity()+ i.getDiscount() + i.getRate() );
+			reduce=i.getQuantity();
+			jdbcTemplate.update("insert into cart values(?,?,?,?,?,?)", i.getName(), i.getCategory(),i.getManufacturer(),
+				1.0,i.getRate(),i.getDiscount());
+			reduce=i.getQuantity()-1.0;
+			jdbcTemplate.update("update product set quantity=? where name=?",reduce,i.getName());
+		}
+		return "billgeneration";
+	}
+
+	@GetMapping(value = "/cartlist")
+	public String cartlist(@ModelAttribute("cart") Cart cart, ModelMap map) {
+		map.put("cart", service.getcart(cart));
+		return "cartlist";
+	}
+	@GetMapping(value="/calculatebill")
+	public String calculatebill(@ModelAttribute("cart") Cart cart, ModelMap map) {
+		map.put("total", service.calculatebill());
+		return "showbill";
+	}
+
 	@PostMapping(value = "/adminLogin")
 	public String adminLogin(@ModelAttribute("user") User user, ModelMap map) {
 		List<User> list = login.details(user);
@@ -195,15 +284,16 @@ public class UserController {
 
 		return "viewregistration";
 	}
+
 	@GetMapping(value = "/update")
 	public String approval(String userid) {
-		jdbcTemplate.update("update user set status=? where userid=?","active",userid);
+		jdbcTemplate.update("update user set status=? where userid=?", "active", userid);
 		return "welcome1";
 	}
 
 	@GetMapping(value = "/delete")
 	public String delete(String userid) {
-		jdbcTemplate.execute("delete from user where userid="+userid);
+		jdbcTemplate.execute("delete from user where userid=" + userid);
 		return "viewregistration";
 	}
 
