@@ -81,9 +81,9 @@ public class ProductController {
 		return "successfulproduct";
 	}
 	@PostMapping(value="/updateEditedForm")
-	public String updateEditedForm(@ModelAttribute("product")  Product product,Model map,BindingResult result) {
+	public String updateEditedForm(@ModelAttribute("product")  @Valid Product product,BindingResult result,Model model) {
 		if(result.hasErrors()) {
-			map.addAttribute("error", "Please Fill all Mandatory fields");
+			model.addAttribute("error", "Please Fill all Mandatory fields");
 			return "editproduct";
 		}
 		jdbcTemplate.update("update product set category=?,manufacturer=?,quantity=?,rate=?,discount=? where name=?;",product.getCategory(),product.getManufacturer(),product.getQuantity(),product.getRate(),product.getDiscount(),product.getName());

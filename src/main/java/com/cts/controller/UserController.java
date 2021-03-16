@@ -221,6 +221,9 @@ public class UserController {
 			System.out.println(
 					i.getName() + i.getCategory() + i.getManufacturer() +i.getQuantity()+ i.getDiscount() + i.getRate() );
 			reduce=i.getQuantity();
+			if(reduce==0) {
+				return "itemNotPresent";
+			}
 			jdbcTemplate.update("insert into cart values(?,?,?,?,?,?)", i.getName(), i.getCategory(),i.getManufacturer(),
 				1.0,i.getRate(),i.getDiscount());
 			reduce=i.getQuantity()-1.0;

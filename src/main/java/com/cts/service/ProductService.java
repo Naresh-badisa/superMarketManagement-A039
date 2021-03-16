@@ -134,8 +134,8 @@ public int getcustomerid() {
         }
         
     });
-    
-   Customer cust=list.get(0);
+    int index=list.size();
+   Customer cust=list.get(index-1);
    System.out.println(cust.getCustomerId());
    return cust.getCustomerId();
 }
