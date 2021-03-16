@@ -8,6 +8,7 @@ public class Product {
 	@NotEmpty
 	private String name;
 	private String category;
+	@NotEmpty
 	private String manufacturer;
 	@NotNull
 	private double quantity;

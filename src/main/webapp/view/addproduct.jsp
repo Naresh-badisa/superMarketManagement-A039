@@ -24,7 +24,7 @@ ${error}
 <form:option value="papergoods"></form:option>
 <form:option value="meat"></form:option>
 <form:option value="others"></form:option></form:select></td></tr>
-<tr><td>Manufacturer</td><td><form:input path="manufacturer" id="manufacturer" pattern="[A-Za-z]{}"/></td></tr>
+<tr><td>Manufacturer</td><td><form:input path="manufacturer" id="manufacturer" pattern="[A-Za-z]+"/></td></tr>
 <tr><td>Quantity</td><td><form:input path="quantity" id="quantity" pattern="[0-9]{}"/></td></tr>
 <tr><td>Rate</td><td><form:input path="rate" id="rate" pattern="[0-9]{}"/></td></tr>
 <tr><td>Discount</td><td><form:input path="discount" id="discount" pattern="[0-9]{}"/></td></tr>

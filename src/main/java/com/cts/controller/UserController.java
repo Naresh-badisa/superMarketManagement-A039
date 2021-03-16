@@ -116,7 +116,7 @@ public class UserController {
 				}
 			}
 			if (i1.getUserCategory().equals("cashier")) {
-				if (i1.getUserId().equals(user.getUserId())) {
+				if (i1.getPassword().equals(user.getPassword())) {
 					validate4 = true;
 					name = i1.getFirstName();
 					break;
@@ -170,7 +170,7 @@ public class UserController {
 			return "customerRegistrationForm";
 		}
 
-		jdbcTemplate.update("insert into customer values(?,?,?,?,?,?)", customer.getFirstName(), customer.getLastName(),
+		jdbcTemplate.update("insert into customer(firstname,lastname,dateofbirth,gender,contactnumber,email) values(?,?,?,?,?,?)", customer.getFirstName(), customer.getLastName(),
 				customer.getDateOfBirth(), customer.getGender(), customer.getContactNumber(), customer.getEmail());
 		return "welcome";
 	}
@@ -237,6 +237,7 @@ public class UserController {
 	@GetMapping(value="/calculatebill")
 	public String calculatebill(@ModelAttribute("cart") Cart cart, ModelMap map) {
 		map.put("total", service.calculatebill());
+		map.put("customerid", service.getcustomerid());
 		return "showbill";
 	}
 

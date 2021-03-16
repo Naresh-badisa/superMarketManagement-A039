@@ -61,8 +61,8 @@ function validate()
 <form:form action="/registration" method="post" modelAttribute="user">
 <table>
 <h4 style="color:red">${error}</h4>
-<tr><td>FirstName:</td><td><form:input type="text" path="firstName" id="firstname" placeholder="Enter First Name" pattern="[A-za-z]{}" /></td></tr>
-<tr><td>LastName:</td><td><form:input path="lastName" id="lastname" placeholder="Enter Last Name" pattern="[A-Za-z]{}"/></td></tr>
+<tr><td>FirstName:</td><td><form:input type="text" path="firstName" id="firstname" placeholder="Enter First Name" pattern="[A-za-z]+" /></td></tr>
+<tr><td>LastName:</td><td><form:input path="lastName" id="lastname" placeholder="Enter Last Name" pattern="[A-Za-z]+"/></td></tr>
 <tr><td>DateOfBirth:</td><td><form:input path="DateOfBirth" id="dob" placeholder="Enter Your DOB"/></td></tr>
 <tr><td>Gender:</td><td><form:radiobutton path="gender" id="male" value="male"/>Male
 <form:radiobutton path="gender" id="female" value="female"/>Female</td></tr>

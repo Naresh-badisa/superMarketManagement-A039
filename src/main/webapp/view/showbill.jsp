@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Thank you for visiting our supermarket.And your bill is ${total}</h1>
+<h1>Thank you for visiting our supermarket.And  bill of customerid:${customerid} is ${total}</h1>
 </body>
 </html>

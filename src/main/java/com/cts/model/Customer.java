@@ -15,6 +15,14 @@ public class Customer {
 	private String contactNumber;
 	@NotEmpty
 	private String email;
+	private int customerId;
+	
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
 	public String getFirstName() {
 		return firstName;
 	}

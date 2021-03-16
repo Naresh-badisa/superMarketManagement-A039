@@ -70,7 +70,7 @@ public class ProductController {
 		}
 	}
 	@GetMapping(value="/edit")
-	public String editproduct(@ModelAttribute("product")  @Valid Product product,ModelMap map ,String name,BindingResult result) {
+	public String editproduct(@ModelAttribute("product")   Product product,ModelMap map ,String name,BindingResult result) {
 		return "editproduct";
 		
 	}
@@ -81,7 +81,7 @@ public class ProductController {
 		return "successfulproduct";
 	}
 	@PostMapping(value="/updateEditedForm")
-	public String updateEditedForm(@ModelAttribute("product") @Valid Product product,Model map,BindingResult result) {
+	public String updateEditedForm(@ModelAttribute("product")  Product product,Model map,BindingResult result) {
 		if(result.hasErrors()) {
 			map.addAttribute("error", "Please Fill all Mandatory fields");
 			return "editproduct";
@@ -91,12 +91,17 @@ public class ProductController {
 	}
 	
 	@GetMapping(value="/addproduct")
-	public String additem(@ModelAttribute("product")  Product product,Model map) {
+	public String additem(@ModelAttribute("product") Product product,Model map,BindingResult result) {
+				
 		return"addproduct";
 	}
 		
 	@PostMapping(value="/addproductdb")
-	public String additemdb(@ModelAttribute("product")  Product product,Model map) {
+	public String additemdb(@ModelAttribute("product")@Valid Product product,BindingResult result,Model model) {
+		if(result.hasErrors()) {
+			model.addAttribute("error","please update highlighted field");
+			return "addproduct";
+		}
 		jdbcTemplate.update("insert into product values(?,?,?,?,?,?)",product.getName(),product.getCategory(),product.getManufacturer(),product.getQuantity(),product.getRate(),product.getDiscount());
 		return "successfulproduct";
 	}

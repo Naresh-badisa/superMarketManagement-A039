@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
 import com.cts.model.Cart;
+import com.cts.model.Customer;
 import com.cts.model.Product;
 import com.cts.model.User;
 @Service
@@ -115,6 +116,28 @@ public double calculatebill() {
 	    
 	    return total;
 	    
+}
+
+public int getcustomerid() {
+	String custid=null;
+	List<Customer> list=new ArrayList<>();
+	
+	list= jdbcTemplate.query("select * from customer ",new RowMapper<Customer>(){
+
+
+
+        @Override
+        public Customer mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Customer cust=new Customer();
+           cust.setCustomerId(rs.getInt("customerid"));
+            return cust;
+        }
+        
+    });
+    
+   Customer cust=list.get(0);
+   System.out.println(cust.getCustomerId());
+   return cust.getCustomerId();
 }
 
 }
