@@ -25,6 +25,7 @@
 <td>Quantity</td>
 <td>Cost</td>
 <td>Discount</td>
+<td>Action</td>
 </tr>
 
  
@@ -57,6 +58,7 @@ while(rs.next())
     <td><%=rs.getString("quantity") %></td>
     <td><%=rs.getString("rate") %></td>
      <td><%=rs.getString("discount") %></td>
+     <td><a href="deleteFromCart?name=<%=rs.getString("name") %>">Delete</a></td>
     </tr>
         <%
 }

@@ -237,11 +237,28 @@ public class UserController {
 		map.put("cart", service.getcart(cart));
 		return "cartlist";
 	}
+	@GetMapping(value="/deleteFromCart")
+	public String deleteFromCart(@ModelAttribute("cart")Cart cart,String name) {
+		double add;System.out.println(name);
+		List<Cart> list = service.getproductbyname(name);
+			for(Cart i:list) {
+				jdbcTemplate.update("delete from cart where name=?",name);
+			add=i.getQuantity()+1.0;
+			jdbcTemplate.update("update product set quantity=? where name=?",add,name);
+		}
+		return "billgeneration";
+	}
 	@GetMapping(value="/calculatebill")
 	public String calculatebill(@ModelAttribute("cart") Cart cart, ModelMap map) {
 		map.put("total", service.calculatebill());
 		map.put("customerid", service.getcustomerid());
 		return "showbill";
+	}
+	
+	@GetMapping(value="/clearCart")
+	public String clearCart(@ModelAttribute("cart") Cart cart) {
+		jdbcTemplate.update("truncate table cart");
+		return "billgeneration";
 	}
 
 	@PostMapping(value = "/adminLogin")

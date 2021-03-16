@@ -26,7 +26,8 @@
 </form:select>
 <input type="submit" value="Go">
 <nav>
- <a href="/cartlist">Cartlist</a>
+ <a href="/cartlist">Cartlist</a><br><br>
+ <a href="/clearCart">ClearCart</a>
 </nav>
 </form:form>
 </body>

@@ -58,7 +58,7 @@ while(rs.next())
     <tr>
     <td><%=rs.getString("name") %></td>
     <td><%=rs.getString("category") %></td>
-     <td><%=rs.getString("maufacturer") %></td>
+     <td><%=rs.getString("manufacturer") %></td>
     <td><%=rs.getString("quantity") %></td>
     <td><%=rs.getString("rate") %></td>
      <td><%=rs.getString("discount") %></td>

@@ -13,5 +13,6 @@ color:#329da8;
 </style>
 <body>
 <h1>Your Logging off successfully</h1>
+<a href="login">Login</a>
 </body>
 </html>

@@ -20,6 +20,7 @@
 <td>FirstName</td>
 <td>LastName</td>
 <td>UserId</td>
+<td>Role</td>
 <td colspan="2" align="center">ACTION</td>
 </tr>
 
@@ -45,6 +46,7 @@ while(rs.next())
     <td><%=rs.getString("firstname") %></td>
     <td><%=rs.getString("lastname") %></td>
     <td><%=rs.getString("userid") %></td>
+    <td><%=rs.getString("usercategory") %></td>
     <td><a href="update?userid=<%=rs.getString("userid") %>">Accept</a></td>
     <td><a href="delete?userid='<%=rs.getString("userid") %>'">decline</a></td>
     
